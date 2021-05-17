@@ -1,15 +1,94 @@
 {
-  "name": "nextjs",
-  "version": "0.1.0",
+  "name": "react-next-landing",
+  "description": "Modern Multipurpose Landing Pages Template Using React, Next, Styled Components and so on. It also support Gatsby Static site generator ",
+  "version": "6.0.0",
   "private": true,
+  "author": "RedQ, Inc",
+  "devDependencies": {
+    "@babel/cli": "^7.10.3",
+    "@types/react": "^16.9.49",
+    "cpx": "^1.5.0",
+    "cross-env": "^7.0.2",
+    "firebase-tools": "8.4.3",
+    "husky": "^4.2.5",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.2.11",
+    "polished": "^3.4.4",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.0.2"
+  },
+  "workspaces": [
+    "packages/common",
+    "packages/landing",
+    "packages/landing-gatsby"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "clean": "lerna clean --yes && rimraf node_modules",
+    "start": "lerna run --parallel dev",
+    "preweb": "cpx \"packages/common/src/assets/image/**/*.*\" \"packages/landing/static\" -C",
+    "next-dev": "yarn workspace next-landing run dev",
+    "next-build": "rimraf dist && yarn workspace next-landing run build",
+    "next-start": "yarn workspace next-landing run start",
+    "next-export": "yarn workspace next-landing run export",
+    "gatsby-dev": "yarn workspace gatsby-landing run dev",
+    "gatsby-build": "yarn workspace gatsby-landing run build",
+    "gatsby-serve": "yarn workspace gatsby-landing run serve",
+    "prebuild-public": "rimraf \"dist/functions/**\" && rimraf \"dist/public\"",
+    "prefirebase-serve": "yarn run build-public && yarn run build-funcs && yarn workspace next-landing run build && yarn run copy-deps && yarn run install-deps",
+    "firebase-serve": "cross-env NODE_ENV=production firebase serve",
+    "prefirebase-deploy": "yarn run build-public && yarn run build-funcs && yarn workspace next-landing run build && yarn run copy-deps",
+    "firebase-deploy": "cross-env NODE_ENV=production firebase deploy",
+    "build-public": "cpx \"packages/common/src/assets/**/*.*\" \"dist/public/static\" -C && cpx \"public/**/*.*\" \"dist/public\" -C && cpx \"packages/landing/public/**/*.*\" \"dist/public\" -C",
+    "build-funcs": "babel \"packages/functions\" --out-dir \"dist/functions\"",
+    "copy-deps": "cpx \"packages/landing/*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\" -C",
+    "install-deps": "cd \"dist/functions\" && yarn",
+    "pregatsby-firebase-serve": "rimraf dist && yarn run gatsby-build && cpx \"packages/landing-gatsby/public/**/*.*\" \"dist/public\" -C",
+    "gatsby-firebase-serve": "cross-env NODE_ENV=production firebase serve",
+    "pregatsby-firebase-deploy": "rimraf dist && yarn run gatsby-build && cpx \"packages/landing-gatsby/public/**/*.*\" \"dist/public\" -C",
+    "gatsby-firebase-deploy": "firebase deploy",
+    "netlify-deploy": "yarn workspace next-landing run netlify-build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,md,css}": [
+      "prettier --trailing-comma es5 --single-quote --write"
+    ]
   },
   "dependencies": {
-    "next": "10.x",
-    "react": "17.x",
-    "react-dom": "17.x"
+    "-": "0.0.1",
+    "@babel/core": "^7.11.6",
+    "@date-io/date-fns": "^1.3.13",
+    "@date-io/dayjs": "^1.3.13",
+    "@date-io/moment": "^1.3.9",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/pickers": "^3.2.10",
+    "@types/webpack": "^5.28.0",
+    "axios": "^0.20.0",
+    "bootstrap": "^4.5.2",
+    "date-fns": "^2.16.1",
+    "formik": "^2.1.5",
+    "formik-material-ui": "^3.0.0",
+    "formik-material-ui-pickers": "0.0.11",
+    "js-cookie": "^2.2.1",
+    "jwt-decode": "^3.0.0-beta.2",
+    "material-ui-image": "^3.2.4",
+    "material-ui-rating": "^4.2.0",
+    "pg": "^8.3.3",
+    "pg-promise": "^10.6.1",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-dates": "^21.8.0",
+    "react-router-dom": "^4.3.1",
+    "react-with-styles-interface-aphrodite": "^6.0.1",
+    "yup": "^0.29.3"
   }
 }

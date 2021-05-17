@@ -1,0 +1,559 @@
+passphrase token: bhmpassphrase
+=================================================================================
+php /usr/local/bin/composer
+
+=================================================================================
+   const GotoLoginPage = () => {
+     window.location.href="http://localhost:3000/login"
+   }  
+=================================================================================
+git init
+git add .
+git commit -m "version1" (exemple)
+git remote add origin URL
+git remote -v
+git push -f origin master
+=================================================================================
+  <b className="text-primary"></b>
+=================================================================================
+/**
+     * @ORM\OneToMany(targetEntity=Suggestions::class, mappedBy="periode")
+     */
+    private $suggestions;
+    /**
+     * @return Collection|Suggestions[]
+     */
+    public function getSuggestions(): Collection
+    {
+        return $this->suggestions;
+    }
+
+    public function addSuggestion(Suggestions $suggestion): self
+    {
+        if (!$this->suggestions->contains($suggestion)) {
+            $this->suggestions[] = $suggestion;
+            $suggestion->setPeriode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuggestion(Suggestions $suggestion): self
+    {
+        if ($this->suggestions->removeElement($suggestion)) {
+            // set the owning side to null (unless already changed)
+            if ($suggestion->getPeriode() === $this) {
+                $suggestion->setPeriode(null);
+            }
+        }
+
+        return $this;
+    }
+=================================================================================
+* * @ApiResource(
+ *     collectionOperations={
+ *        "GET"={},
+ *        "add_nutrition"={
+ *              "method"="POST",
+ *              "path"="/nutritions",
+ *              "route_name" = "add_nutrition"
+ *          }
+ *     },
+ *     itemOperations={
+ *        "GET"={},"PUT"={},"DELETE"={}
+ *     }
+ * )
+
+=================================================================================
+/**
+     * @ORM\ManyToOne(targetEntity=Nutritions::class, inversedBy="suggestions")
+     */
+    private $nutrition;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="suggestions")
+     */
+    private $utilisateur;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $note;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+    /*public function getNutrition(): ?Nutritions
+    {
+        return $this->nutrition;
+    }
+
+    public function setNutrition(?Nutritions $nutrition): self
+    {
+        $this->nutrition = $nutrition;
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?User
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?User $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getNote(): ?bool
+    {
+        return $this->note;
+    }
+
+    public function setNote(bool $note): self
+    {
+        $this->note = $note;
+
+        return $this;
+    }*/
+}
+
+=================================================================================
+<div className="row w-100 ml-1 bg-light p-2 mt-1">
+										<div className="col-11 text-left">
+											<p onClick={()=>this.setState({urlVideo: 'https://youtu.be/yFVgcoRPkVs', title: 'Corde à sauter ou sauter sur place', duree: '1 minutes', recuperation: '30 secondes'})} className="pt-2"><span className="text-dark font-weight-bold"><span className="text-info">Echauffement:</span> </span> Corde à sauter ou sauter sur place</p>
+										</div>
+										<div className="col-1">
+											<svg width="3em" height="3em" viewBox="0 0 16 16"
+												 className="bi bi-play" fill="currentColor"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd"
+													  d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+											</svg>
+										</div>
+									</div>
+									<div className="row w-100 ml-1 bg-light p-2 mt-1">
+										<div className="col-11 text-left">
+											<p onClick={()=>this.setState({urlVideo: 'https://youtu.be/UaeAJeIaxUc', title: 'Course sur place', duree: '45 secondes', recuperation: '30 secondes'})} className="pt-2"><span className="text-dark font-weight-bold"><span className="text-primary">Entrainement:</span> </span> Course sur place</p>
+										</div>
+										<div className="col-1">
+											<svg width="3em" height="3em" viewBox="0 0 16 16"
+												 className="bi bi-play" fill="currentColor"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd"
+													  d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+											</svg>
+										</div>
+									</div>
+									<div className="row w-100 ml-1 bg-light p-2 mt-1">
+										<div className="col-11 text-left">
+											<p onClick={()=>this.setState({urlVideo: 'https://youtu.be/yFVgcoRPkVs', title: 'Jumping jack sans les mains', duree: '30 secondes', recuperation: '30 secondes'})} className="pt-2"><span className="text-dark font-weight-bold"><span className="text-primary">Entrainement:</span> </span> Jumping jack sans les mains</p>
+										</div>
+										<div className="col-1">
+											<svg width="3em" height="3em" viewBox="0 0 16 16"
+												 className="bi bi-play" fill="currentColor"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd"
+													  d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+											</svg>
+										</div>
+									</div>
+									<div className="row w-100 ml-1 bg-light p-2 mt-1">
+										<div className="col-11 text-left">
+											<p onClick={()=>this.setState({urlVideo: 'https://youtu.be/FJEq64LNjnM', title: 'Push-up', duree: '30 secondes', recuperation: '30 secondes'})} className="pt-2"><span className="text-dark font-weight-bold"><span className="text-primary">Entrainement:</span> </span> Push-up</p>
+										</div>
+										<div className="col-1">
+											<svg width="3em" height="3em" viewBox="0 0 16 16"
+												 className="bi bi-play" fill="currentColor"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd"
+													  d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+											</svg>
+										</div>
+									</div>
+									<div className="row w-100 ml-1 bg-light p-2 mt-1">
+										<div className="col-11 text-left">
+											<p onClick={()=>this.setState({urlVideo: 'https://youtu.be/x5SBAxmqT94', title: 'Gym tapis', duree: '30 secondes', recuperation: '30 secondes'})} className="pt-2"><span className="text-dark font-weight-bold"><span className="text-primary">Entrainement:</span> </span> Gym tapis</p>
+										</div>
+										<div className="col-1">
+											<svg width="3em" height="3em" viewBox="0 0 16 16"
+												 className="bi bi-play" fill="currentColor"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd"
+													  d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+											</svg>
+										</div>
+									</div>
+									<div className="row w-100 ml-1 bg-light p-2 mt-1 mb-4">
+										<div className="col-11 text-left">
+											<p onClick={()=>this.setState({urlVideo: 'https://youtu.be/ly8eMDKqXR8', title: 'Skater', duree: '30 secondes', recuperation: '30 secondes'})} className="pt-2"><span className="text-dark font-weight-bold"><span className="text-primary">Entrainement:</span> </span> Skater</p>
+										</div>
+										<div className="col-1">
+											<svg width="3em" height="3em" viewBox="0 0 16 16"
+												 className="bi bi-play" fill="currentColor"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd"
+													  d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+											</svg>
+										</div>
+									</div>
+{/*<div className="col-4">
+								<div className="row w-100 ml-2 bg-white rounded shadow-sm w-100 p-2">
+										<div className="col-7">
+											<h5>Scéance 1</h5><h6 className="text-secondary">Full body workout</h6>
+										</div>
+										<div className="col-5">
+											<img className='w-100' src="/image/undraw_video_files_fu10.svg" alt=""/>
+										</div>
+								</div>
+								<div className="row w-100 ml-2 mt-5 bg-white rounded shadow-sm w-100 p-2 h-50">
+									<div className="col-12 p-2 ml-1 h-25">
+										<h6 className="text-dark">Informations sur <span className="text-secondary">la scéance</span></h6>
+									</div>
+									<div className="col-12 h-75 w-100 text-center">
+										<div className="row w-100 bg-light rounded ml-1">
+											<div className="col-8">
+												<p className="p-2"><span className="text-dark">Parties du corps travaillées :</span> Tout le corps </p>
+											</div>
+											<div className="col-4">
+												<img className='w-100' src="/image/undraw_personal_training_0dqn.svg" alt=""/>
+											</div>
+										</div>
+										<div className="row w-100 bg-light rounded ml-1 mt-4">
+											<div className="col-8">
+												<p className="p-2"><span className="text-dark">Matériel (s) nécessaire (s) :</span> Corde à sauter / Tapis Sport </p>
+											</div>
+											<div className="col-4">
+												<img className='w-100' src="/image/undraw_link_shortener_mvf6.svg" alt=""/>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="row w-100 ml-2 bg-light rounded shadow-sm w-100 p-2 mt-4">
+									<h6 className="text-dark">Vous avez des questions ?</h6>
+									<div className="row w-100 rounded ml-1 mt-2">
+										<div className="col-4">
+											<img className='w-100' src="/image/undraw_lightbulb_moment_evxr.svg" alt=""/>
+										</div>
+										<div className="col-8 text-right">
+											<p className="p-2">La communauté BHM est là pour vous !</p>
+											<button className="btn btn-warning btn-sm">Accéder au forum</button>
+										</div>
+									</div>
+								</div>
+							</div>*/}
+
+=================================================================================
+{/*<>
+		<DropdownItem link='#' onClick={logout}>Déconnexion</DropdownItem>
+</>*/}
+
+{
+	isAuthenticated && (
+	  <div onClick={logout}>Déconnexion</div>
+  )
+}
+=================================================================================
+export default function GetUserDetails() {
+    
+    /*const [userData, setUserData] = useState({});
+    
+    if(isAuthenticated){	
+		const fetchData = async () => {
+		    const response = await api.get(`/api/users/${user.id}`);
+		    //setUserData(response.data);
+			console.log(response.data);
+		}
+		useEffect(()=>{
+			fetchData();
+		},[]);
+	}*/
+	
+    const {isAuthenticated, user} = useAuth();
+    let [responseData, setResponseData] = useState({});  
+
+    if(isAuthenticated){  
+		  const details_user = api.get(`/api/users/${user.id}`).then(response => response.data);
+		
+      const fetchData = (e) => {
+        e.preventDefault();
+        api.get(`/api/programmes/${details_user.programme.split('/')[3]}`)
+        .then((response) => setResponseData(response.data))
+        .catch(error => console.error(`Erreur:${error}`));
+      }
+       
+      return JSON.parse(responseData);
+    }
+}
+=================================================================================
+import React, { useState,useEffect } from 'react';
+import api from './Api';
+import useAuth from "./context";
+
+
+ function authDetails() {
+
+  const {isAuthenticated, user} = useAuth();
+  const [progData, setprogData] = useState({});
+
+  useEffect(async()=>{
+    //getUserDetails();
+  //},[]);
+  
+  //const getUserDetails = async() => {
+    if(isAuthenticated) {
+          
+      const userData = await api.get(`/api/users/${user.id}`).then(response => response.data);
+      
+      if(userData){
+          const userprogData = api.get(`/api/programmes/${userData.programme.split('/')[3]}`)
+                                        .then((response) => { setprogData(response.data); } );
+      }
+    }
+  },[]);
+
+  //};
+
+  console.log(progData);
+  return progData;
+
+}
+
+export default authDetails;
+
+
+=================================================================================
+onClick={toggleChecked}
+===================
+<input type="radio" name="typeAbonnement" value={item.price==15000? "1mois":"3mois"} className="typeAb"/>          
+===================================================================================
+.btnchoice:hover{
+                        box-shadow: #000 0px 12px 24px -10px;
+                        cursor:pointer;
+                    }
+                    .btnchoice:click{
+
+                    }
+                    .btnchoice .btn-primary:hover{
+                        box-shadow: #000 0px 12px 24px -10px;
+                        cursor:pointer;
+                    }   
+===================================================================================
+<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off" />
+<label class="btn btn-primary" for="btn-check">Checkbox button</label>
+
+<input type="checkbox" class="btn-check" id="btn-check2" checked autocomplete="off" />
+<label class="btn btn-primary" for="btn-check2">Checkbox button</label>
+
+<input type="checkbox" class="btn-check" id="btn-check3" autocomplete="off" />
+<label class="btn btn-primary" for="btn-check3">Checkbox button</label>
+===================================================================================
+{/*<Field component={RadioGroup} name="activity">
+                    <div className="row mb-0">
+                      <div className="col-5 text-center my-auto p-0">
+                        <Card className="bg-grey">
+                          <CardContent>
+                            <h3 className="text-bhm-orange">Abonnement 1 mois</h3>
+                            <h6 className="text-secondary">15 000 FCFA /mois</h6>
+                            <Divider />
+                            <List component="nav" aria-label="main mailbox folders">
+                              <ListItem button>
+                                <ListItemIcon>
+                                  <CheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Accès à un programme sportif sur-mesure" />
+                              </ListItem>
+                              <ListItem button>
+                                <ListItemIcon>
+                                  <CheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Programme en nutrition complet" />
+                              </ListItem>
+                              <ListItem button>
+                                <ListItemIcon>
+                                  <CheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Accès au forum d’échange entre abonnés et coachs" />
+                              </ListItem>
+                              <ListItem button>
+                                <ListItemIcon>
+                                  <CheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Suivi de vos progrès en temps réel" />
+                              </ListItem>
+                              <div>
+
+                              </div>
+                            </List>
+                            <label>
+                              <Field type="radio" name="typeAbonnement" value="1mois" />
+                              Je choisis cette option
+                            </label>
+                          </CardContent>
+                        </Card>
+                      </div>
+                      <div className="col-2">
+
+                      </div>
+                      <div className="col-5 text-center">
+                        <Card className="bg-grey">
+                          <CardContent>
+                            <h3 className="text-bhm-orange">Abonnement 3 mois</h3>
+                            <h6 className="text-secondary">12 000 FCFA /mois</h6>
+                            <Divider />
+                            <List component="nav" aria-label="main mailbox folders">
+                              <ListItem button>
+                                <ListItemIcon>
+                                  <CheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Accès à un programme sportif sur-mesure" />
+                              </ListItem>
+                              <ListItem button>
+                                <ListItemIcon>
+                                  <CheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Programme en nutrition complet" />
+                              </ListItem>
+                              <ListItem button>
+                                <ListItemIcon>
+                                  <CheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Accès au forum d’échange entre abonnés et coachs" />
+                              </ListItem>
+                              <ListItem button>
+                                <ListItemIcon>
+                                  <CheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Suivi de vos progrès en temps réel" />
+                              </ListItem>
+                              <ListItem button>
+                                <ListItemIcon>
+                                  <CheckIcon />
+                                </ListItemIcon>
+                                <ListItemText primary=" Accès aux challenges Code promo valable 3 mois et utilisable 5 fois avec 10% sur tous nos articles boutique" />
+                              </ListItem>
+                            </List>
+                            <label>
+                              <Field type="radio" name="typeAbonnement" value="3mois" />
+                              Je choisis cette option
+                            </label>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </div>
+                  </Field>
+                      <br/>*/}
+========================================================
+<Field component={DatePicker}  dateFormat="dd/MM/yyyy" name="dateNaissance" label="Date de naissance" className={classes.root}/>
+{/*<DatePicker views={["year", "month", "date"]} 
+                                    openTo="year"
+                                    animateYearScrolling
+                                    format="DD/MM/YYYY" 
+                                    name="dateNaissance" 
+                                    label="Date de naissance" 
+                                    value={value} /*selectedDate
+                                    onChange={(newValue) => {setValue(newValue)}} 
+                                    className={classes.root}
+                                    maxDate={new Date("01/11/2010")}
+                        />*/}
+{/*<DatePicker views={["year", "month"]} 
+                                          openTo="year"
+                                          animateYearScrolling
+                                          format="MM/yy" 
+                                          name="expiryDate" 
+                                          label="Date d'expiration" 
+                                          value={selectedDateExpirat} 
+                                          onChange={handleDateExpiratChange} 
+                                          className="mt-4 mb-4"
+                                          maxDate={new Date("01/11/2030")}
+                                      />*/}
+====================
+
+<i onClick={togglePasswordVisiblity} className={passwordShown ? "shown" :null}>{eye}</i>
+
+
+==========================================  
+                    <div className="col-6">
+                        <Field fullWidth name="nameOnCard" component={TextField} label="nameOnCard" className={classes.root}/>
+                    </div>
+                    <div className="col-6">
+                        <Field fullWidth name="cardNumber" component={TextField} label="cardNumber" className={classes.root}/>
+                    </div>
+                    <div className="col-6">
+                        <Field fullWidth component={DatePicker} name="expiryDate" format="MM/yy" views={['year', 'month']} minDate={new Date()} maxDate={new Date('2050/12/31')} label="expiryDate" className={classes.root}/>
+                    </div>
+                    <div className="col-6">
+                        <Field fullWidth name="cvv" component={TextField} label="cvv" className={classes.root}/>
+                    </div>
+
+                    <Typography variant="h3" gutterBottom>
+                      Méthode de paiement
+                  </Typography>
+
+                  <Button variant="contained" className="text-uppercase col-10 ml-4 mr-4 mt-4 mb-4" color="primary" type="submit">Payer Maintenant</Button>
+        
+        
+        ~#{{[[||`\^@]}]}¤?./§%%£µ¨+°1²&&é}
+        
+
+        border-color: #0273d6;
+        
+          @include transition(all .5s ease);
+
+        <style jsx>{`
+          i {
+                                position: absolute;
+                                top: 38%;
+                                right: 16%;
+                              }
+                              i:hover {
+                                color: #00fcb6;
+                                cursor: pointer;
+                              }
+          }
+        `}</style>
+
+<Grid item container direction="column" xs={12} sm={6}>
+      <Typography variant="h6" gutterBottom className={classes.title}>
+        Payment details
+      </Typography>
+      <Grid container>
+        <React.Fragment>
+          <Grid item xs={6}>
+            <Typography gutterBottom>Card type</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography gutterBottom>Visa</Typography>
+          </Grid>
+        </React.Fragment>
+        <React.Fragment>
+          <Grid item xs={6}>
+            <Typography gutterBottom>Card holder</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography gutterBottom>{nameOnCard}</Typography>
+          </Grid>
+        </React.Fragment>
+        <React.Fragment>
+          <Grid item xs={6}>
+            <Typography gutterBottom>Card number</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography gutterBottom>{cardNumber}</Typography>
+          </Grid>
+        </React.Fragment>
+        <React.Fragment>
+          <Grid item xs={6}>
+            <Typography gutterBottom>Expiry Date</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography gutterBottom>
+              {moment(expiryDate).format('MM/YY')}
+            </Typography>
+          </Grid>
+        </React.Fragment>
+      </Grid>
+    </Grid>
