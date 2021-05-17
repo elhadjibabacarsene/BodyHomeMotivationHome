@@ -7,6 +7,7 @@
   "devDependencies": {
     "@babel/cli": "^7.10.3",
     "@types/react": "^16.9.49",
+    "@vercel/node": "^1.10.0",
     "cpx": "^1.5.0",
     "cross-env": "^7.0.2",
     "firebase-tools": "8.4.3",
